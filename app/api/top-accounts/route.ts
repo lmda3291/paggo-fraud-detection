@@ -17,10 +17,10 @@ export async function GET() {
   `);
 
   const result = await Promise.all(
-    accountsResult.rows.map(async (acc: any) => {
+    accountsResult.rows.map(async (acc: Record<string, unknown>) => {
       const topRuleResult = await db.execute({
         sql: `SELECT fired_rules FROM transactions WHERE nameOrig = ? AND risk_score > 0 ORDER BY risk_score DESC LIMIT 1`,
-        args: [acc.id],
+        args: [acc.id as string],
       });
       let topRule = "-";
       try {
