@@ -2,7 +2,7 @@
 
 > A compliance investigation tool for financial analysts — built for the Paggo Product Engineer case.
 
-**[Live Demo →](VERCEL_URL_HERE)** | **[Repository →](GITHUB_URL_HERE)**
+**[Live Demo →](https://paggo-fraud-detection.vercel.app)** | **[Repository →](https://github.com/lmda3291/paggo-fraud-detection)**
 
 Built with Next.js 14 · SQLite · Claude AI · TypeScript · Tailwind CSS
 
@@ -151,7 +151,7 @@ fraud tools like Feedzai, Sardine, and Unit21 work.
 
 ## Setup Instructions
 ```bash
-git clone https://github.com/YOUR_USERNAME/paggo-fraud-detection
+git clone https://github.com/lmda3291/paggo-fraud-detection
 cd paggo-fraud-detection
 npm install
 cp .env.example .env.local
