@@ -20,20 +20,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const result = db.prepare(
-    "UPDATE transactions SET reviewed_status = @status WHERE txId = @txId"
-  ).run({ txId, status });
+  const result = await db.execute({
+    sql: "UPDATE transactions SET reviewed_status = ? WHERE txId = ?",
+    args: [status, txId],
+  });
 
-  if (result.changes === 0) {
-    return NextResponse.json(
-      { error: "Transaction not found" },
-      { status: 404 }
-    );
+  if (result.rowsAffected === 0) {
+    return NextResponse.json({ error: "Transaction not found" }, { status: 404 });
   }
 
-  return NextResponse.json({
-    success: true,
-    txId,
-    reviewed_status: status,
-  });
+  return NextResponse.json({ success: true, txId, reviewed_status: status });
 }
