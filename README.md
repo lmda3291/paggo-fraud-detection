@@ -156,7 +156,7 @@ cd paggo-fraud-detection
 npm install
 cp .env.example .env.local
 # Add ANTHROPIC_API_KEY, NEXTAUTH_SECRET, NEXTAUTH_URL to .env.local
-npx tsx scripts/seed.ts
+# Database is hosted on Turso (no local seed needed)
 npm run dev
 ```
 
