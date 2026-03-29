@@ -6,13 +6,13 @@ Paggo's Product Engineer hiring case. It processes 7,800 synthetic bank
 transactions, applies 5 fraud detection rules with additive risk scoring
 (0–95 points), and provides an AI-powered analyst interface.
 
-**Stack:** Next.js 14 (App Router) · TypeScript · SQLite (better-sqlite3) ·
+**Stack:** Next.js 14 (App Router) · TypeScript · Turso (libsql) ·
 Anthropic Claude API (claude-sonnet-4-20250514) · Recharts · NextAuth.js ·
 ExcelJS · jsPDF · Tailwind CSS
 
 **Location:** C:\Dev\paggo-fraud-detection
 **Dev server:** http://localhost:3000
-**Database:** data/fraud.db (SQLite, pre-seeded with 7,800 transactions)
+**Database:** Turso (distributed SQLite, hosted on us-east-1)
 
 ---
 
@@ -128,7 +128,7 @@ KPICards.tsx          — Animated counter KPI cards
 TopSuspiciousAccounts.tsx — Ranked account table with filters
 RulesInfoModal.tsx    — Detection rules explanation modal
 lib/
-db.ts                 — SQLite singleton instance
+db.ts                 — Turso client instance
 fraud-rules.ts        — 5 detection rules + scoring engine
 generate-report.ts    — jsPDF account report generator
 scripts/
@@ -216,10 +216,7 @@ NEXTAUTH_URL=         # http://localhost:3000 (dev) or deployed URL (prod)
 
 ## Known Constraints & Tradeoffs
 
-- **SQLite in serverless** — SQLite doesn't work in Vercel serverless
-  functions because the filesystem is ephemeral. Deploy solution: bundle
-  the pre-seeded fraud.db in the repo, OR migrate to Turso (distributed
-  SQLite with same API).
+- **Turso (distributed SQLite) is used for production. Persistent writes work correctly in Vercel serverless.
 - **Repeated Origin rule** — requires full table scan at seed time.
   Acceptable for a fixed dataset; would need materialized views or a
   pre-computed column in production.
@@ -229,3 +226,4 @@ NEXTAUTH_URL=         # http://localhost:3000 (dev) or deployed URL (prod)
 - **Demo credentials in repo** — analyst@paggo.com / paggo2025 are
   intentionally visible for evaluator access. In production, credentials
   would be provisioned via environment variables or an identity provider.
+
