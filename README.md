@@ -169,7 +169,7 @@ Open http://localhost:3000
 | Layer | Choice | Why |
 |-------|--------|-----|
 | Framework | Next.js 14 (App Router) | Full-stack, API routes, SSR |
-| Database | Turso (libsql) | Distributed Turso, persistent writes in serverless |
+| Database | Turso (libsql) | Distributed SQLite, persistent writes in serverless |
 | AI | Anthropic Claude (Sonnet) | Best reasoning for data analysis |
 | Auth | NextAuth.js | Simple JWT sessions, edge middleware |
 | Charts | Recharts | Composable React charts |
@@ -190,7 +190,7 @@ Open http://localhost:3000
 
 ## Performance
 
-- Turso indexes on risk_score, nameOrig, nameDest, type, timestamp
+- SQLite indexes on risk_score, nameOrig, nameDest, type, timestamp
 - Paginated API responses (50 rows default, configurable up to 99,999 for export)
 - Dynamic imports for heavy libraries (jsPDF, ExcelJS) — loaded only on demand
 - Recharts renders only visible data points
@@ -211,4 +211,5 @@ Open http://localhost:3000
 ---
 
 *Built by Lucas Meili Dell Aquila · Paggo Product Engineer Case · March 2026*
+
 
