@@ -169,7 +169,7 @@ Open http://localhost:3000
 | Layer | Choice | Why |
 |-------|--------|-----|
 | Framework | Next.js 14 (App Router) | Full-stack, API routes, SSR |
-| Database | SQLite (better-sqlite3) | Zero-latency, no infra for fixed dataset |
+| Database | Turso (libsql) | Distributed SQLite, persistent writes in serverless |
 | AI | Anthropic Claude (Sonnet) | Best reasoning for data analysis |
 | Auth | NextAuth.js | Simple JWT sessions, edge middleware |
 | Charts | Recharts | Composable React charts |
