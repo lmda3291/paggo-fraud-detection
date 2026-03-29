@@ -18,7 +18,7 @@ ExcelJS · jsPDF · Tailwind CSS
 
 ## Architecture Decisions
 
-### Why SQLite over Postgres?
+### Why Turso over Postgres?
 Fixed dataset of 7,800 transactions. SQLite runs in-process with zero
 network latency — perfect for a read-heavy compliance dashboard.
 Migration path to Turso (distributed SQLite) or Neon (serverless Postgres)
@@ -202,7 +202,7 @@ NEXTAUTH_URL=         # http://localhost:3000 (dev) or deployed URL (prod)
   performance improvements; analysts see responses token-by-token.
 - **Dynamic imports for heavy libs** — jsPDF and ExcelJS imported with
   dynamic import() to avoid SSR issues and keep initial bundle lean.
-- **SQLite singleton** — single db instance in lib/db.ts prevents
+- **Turso client singleton** — single db instance in lib/db.ts prevents
   connection exhaustion during Next.js hot reload cycles.
 - **Optimistic UI updates** — FP/Sus button clicks update the row
   immediately before the API confirms, improving perceived responsiveness.
@@ -216,7 +216,7 @@ NEXTAUTH_URL=         # http://localhost:3000 (dev) or deployed URL (prod)
 
 ## Known Constraints & Tradeoffs
 
-- **Turso (distributed SQLite) is used for production. Persistent writes work correctly in Vercel serverless.
+- **Turso (distributed SQLite)** � used for production. Persistent writes work correctly in Vercel serverless.
 - **Repeated Origin rule** — requires full table scan at seed time.
   Acceptable for a fixed dataset; would need materialized views or a
   pre-computed column in production.
@@ -226,4 +226,5 @@ NEXTAUTH_URL=         # http://localhost:3000 (dev) or deployed URL (prod)
 - **Demo credentials in repo** — analyst@paggo.com / paggo2025 are
   intentionally visible for evaluator access. In production, credentials
   would be provisioned via environment variables or an identity provider.
+
 
