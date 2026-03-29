@@ -19,7 +19,7 @@ ExcelJS · jsPDF · Tailwind CSS
 ## Architecture Decisions
 
 ### Why Turso over Postgres?
-Fixed dataset of 7,800 transactions. SQLite runs in-process with zero
+Fixed dataset of 7,800 transactions. Turso offers a familiar SQL API with persistent writes in serverless --
 network latency — perfect for a read-heavy compliance dashboard.
 Migration path to Turso (distributed SQLite) or Neon (serverless Postgres)
 is trivial if the dataset grows.
