@@ -11,7 +11,7 @@ export async function GET() {
     FROM transactions
   `);
 
-  const stats = result.rows[0] as { confirmedSuspicious: number; falsePositives: number; pendingReview: number; totalFlagged: number };
+  const stats = result.rows[0] as unknown as { confirmedSuspicious: number; falsePositives: number; pendingReview: number; totalFlagged: number };
   const reviewed = stats.confirmedSuspicious + stats.falsePositives;
   const reviewRate = stats.totalFlagged > 0 ? Math.round((reviewed / stats.totalFlagged) * 1000) / 10 : 0;
 

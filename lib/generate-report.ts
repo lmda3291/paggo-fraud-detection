@@ -44,7 +44,7 @@ export async function generateAccountReport(data: AccountData): Promise<void> {
   const { jsPDF } = await import("jspdf");
   await import("jspdf-autotable");
 
-  const doc = new jsPDF("p", "mm", "a4") as ReturnType<typeof jsPDF.prototype> & {
+  const doc = new jsPDF("p", "mm", "a4") as unknown as { internal: { pageSize: { getWidth: () => number; getHeight: () => number } };
     autoTable: (options: Record<string, unknown>) => void;
     lastAutoTable: { finalY: number };
   };

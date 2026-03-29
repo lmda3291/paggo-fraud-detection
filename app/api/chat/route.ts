@@ -37,8 +37,9 @@ async function buildContext(): Promise<string> {
   const overview = overviewRes.rows[0] as Record<string, number | string>;
   const byType = byTypeRes.rows as Record<string, number | string>[];
   const ruleCounts: Record<string, number> = {};
-  for (const row of ruleRes.rows as { fired_rules: string }[]) {
-    const rules = JSON.parse(row.fired_rules) as { rule: string }[];
+  for (const row of ruleRes.rows) {
+    const fired = (row as unknown as { fired_rules: string }).fired_rules;
+    const rules = JSON.parse(fired) as { rule: string }[];
     for (const r of rules) { ruleCounts[r.rule] = (ruleCounts[r.rule] || 0) + 1; }
   }
   const topSuspicious = topRes.rows as Record<string, number | string>[];
